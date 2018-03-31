@@ -27,9 +27,12 @@ public class AbstractFiveController {
      */
     @RequestMapping("/multithread")
     public String multithread() {
+        //30个线程
         ExecutorService pool = Executors.newFixedThreadPool(taskSize);
         synchronized (lock){
+            //1000个任务
            for(int i=0;i<1000;i++){
+                //分配任务
                 MultithreaddingService multithreaddingService = new MultithreaddingService(i + "", i, multithreadTestService);
                 pool.submit(multithreaddingService);
             }

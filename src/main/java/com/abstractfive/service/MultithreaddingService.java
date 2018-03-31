@@ -28,17 +28,14 @@ public class MultithreaddingService implements Callable<Object> {
 
     @Override
     public Object call() throws Exception {
-        Date dateTmp1 = new Date();
-        //执行逻辑
-
-        //分配任务
+        Long startTime=System.currentTimeMillis();
         try{
             baseService.multithreadingContent(record);
         }catch (Exception e){
             multiThreadLogger.error("执行分配任务出错",e);
         }
-        Date dateTmp2 = new Date();
-        long time = dateTmp2.getTime() - dateTmp1.getTime();
+        Long endTime=System.currentTimeMillis();
+        long time = startTime - endTime;
         return taskNum + "任务返回运行结果,当前任务时间【" + time + "毫秒】";
     }
 }
